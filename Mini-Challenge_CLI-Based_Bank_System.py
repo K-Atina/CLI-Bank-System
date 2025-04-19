@@ -1,5 +1,20 @@
 import time
 import sys
+import json
+import os
+
+DATA_FILE = "bank_data.json"
+
+def load_data():
+    if not os.path.exists(DATA_FILE):
+        return {"balance": 0}
+    with open(DATA_FILE, "r") as file:
+        return json.load(file)
+
+def save_data(data):
+    with open(DATA_FILE, "w") as file:
+        json.dump(data, file)
+
 
 
 def deposit(balance,new_deposit):
@@ -46,7 +61,8 @@ def type_out(text, delay=0.05):
           
 #Main program function
 def main():
-    balance=0
+    data = load_data()
+    balance = data.get("balance", 0)
     type_out("Welcome to the CLI Bank!")
     time.sleep(1)
     
@@ -69,6 +85,8 @@ def main():
             try:
                 amount = float(input("Enter amount to deposit: "))
                 balance = deposit(balance, amount)
+                data["balance"] = balance
+                save_data(data)
             except ValueError:
                 print("Please enter a valid number.")
 
@@ -76,6 +94,8 @@ def main():
             try:
                 amount = float(input("Enter amount to withdraw: "))
                 balance = withdraw_money(balance, amount)
+                data["balance"] = balance
+                save_data(data)
             except ValueError:
                 print("Please enter a valid number.")
 

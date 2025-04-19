@@ -6,6 +6,8 @@ Features:
 - Balance checks
 - Input validation
 - Clean exit
+- Data Retention (Data is saved in a JSON file)
+- Smooth typewriter effect on startup
 
 ---
 
