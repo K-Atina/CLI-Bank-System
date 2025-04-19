@@ -1,6 +1,7 @@
 import time
 import sys
 
+
 def deposit(balance,new_deposit):
     if new_deposit>0:
         balance=balance+new_deposit
@@ -34,22 +35,35 @@ def exit_program():
     time.sleep(0.5)
     print("Bye!")
     sys.exit()
+    
+def type_out(text, delay=0.05):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(delay)
+    print() 
 
           
 #Main program function
 def main():
     balance=0
-    print("Welcome to the CLI Bank!")
+    type_out("Welcome to the CLI Bank!")
     time.sleep(1)
     
     while True:
-        print("\nWhat would you like to do?")
-        print("1. Deposit")
-        print("2. Withdraw")
-        print("3. Check Balance")
-        print("4. Exit")
+        type_out("\nWhat would you like to do?")
+        time.sleep(0.5)
+        type_out("1. Deposit")
+        time.sleep(0.5)
+        type_out("2. Withdraw")
+        time.sleep(0.5)
+        type_out("3. Check Balance")
+        time.sleep(0.5)
+        type_out("4. Exit")
+        time.sleep(0.5)
+        type_out("Enter your choice: ")
         
-        choice = input("Enter your choice (1-4): ")
+        choice = input()
         
         if choice == "1":
             try:
